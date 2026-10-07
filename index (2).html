@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shervin's Food Lab – Food & Gastro Marketing</title>
+  <meta name="description" content="Marketing tips for cafés and restaurants. From food science to digital marketing, based in Berlin.">
+
+  <!-- =========================================================
+       GOOGLE ANALYTICS 4 – loaded ONLY after the visitor accepts
+       cookies (DSGVO). See the "CONSENT + GA4" script at the bottom.
+       Measurement ID: G-HVPWKVLDRX (Food Lab property)
+       ========================================================= -->
+
+  <style>
+    :root {
+      --red: #9b1c1c;
+      --red-dark: #7a1414;
+      --cream: #fff8f1;
+      --ink: #1f1a17;
+      --muted: #6b605a;
+      --card: #ffffff;
+      --line: #f0e4d8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    a { color: var(--red); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255, 248, 241, 0.95);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 700; }
+    .badge {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--red); color: #fff;
+      display: grid; place-items: center;
+      font-size: 10px; font-weight: 800; line-height: 1; text-align: center;
+    }
+    .badge img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links a { text-decoration: none; color: var(--ink); font-size: 15px; }
+    .lang-btn {
+      border: 1px solid var(--red); background: transparent; color: var(--red);
+      border-radius: 999px; padding: 4px 12px; font-weight: 600; cursor: pointer;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 72px 20px 56px; }
+    .eyebrow { color: var(--red); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+    .hero h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.1; margin: 10px 0 16px; }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 600px; margin: 0 0 28px; }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block; text-decoration: none; font-weight: 600;
+      padding: 12px 20px; border-radius: 10px; border: 2px solid var(--red);
+    }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-primary:hover { background: var(--red-dark); }
+    .btn-ghost { color: var(--red); background: transparent; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    h2 { font-size: 30px; margin: 0 0 18px; }
+    .about { display: grid; grid-template-columns: 1fr 1.6fr; gap: 32px; align-items: start; }
+    .facts { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+    .facts div { padding: 8px 0; border-bottom: 1px dashed var(--line); }
+    .facts div:last-child { border-bottom: none; }
+    .facts strong { display: block; font-size: 13px; color: var(--muted); font-weight: 600; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .card .icon { font-size: 28px; }
+    .card h3 { margin: 8px 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .socials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .social {
+      display: block; text-decoration: none; color: var(--ink);
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 22px; transition: transform .15s, border-color .15s;
+    }
+    .social:hover { transform: translateY(-3px); border-color: var(--red); }
+    .social .name { font-weight: 700; font-size: 18px; }
+    .social .handle { color: var(--muted); font-size: 14px; }
+
+    /* ---------- Footer ---------- */
+    footer { padding: 32px 0 100px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+    footer .row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+    footer button { background: none; border: none; color: var(--red); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
+    .legal { margin-top: 24px; font-size: 13px; }
+    .legal h3 { font-size: 15px; color: var(--ink); margin: 18px 0 4px; }
+
+    /* ---------- Cookie banner ---------- */
+    #cookie-banner {
+      position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50;
+      max-width: 640px; margin: 0 auto;
+      background: var(--ink); color: #fff; border-radius: 14px;
+      padding: 18px 20px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      display: none;
+    }
+    #cookie-banner p { margin: 0 0 12px; font-size: 14px; }
+    #cookie-banner a { color: #ffd2c2; }
+    #cookie-banner .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    #cookie-banner button { border: none; border-radius: 8px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
+    #accept { background: #fff; color: var(--ink); }
+    #decline { background: transparent; color: #fff; border: 1px solid #fff !important; }
+
+    /* ---------- Language toggle ---------- */
+    body.de .en { display: none; }
+    body:not(.de) .de { display: none; }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 720px) {
+      .nav-links a { display: none; }
+      .about, .cards, .socials { grid-template-columns: 1fr; }
+      .hero { padding: 48px 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="brand">
+        <!-- To use your Canva logo: upload it to GitHub as logo.png,
+             then replace the text below with: <img src="logo.png" alt="Food Lab logo"> -->
+        <span class="badge">FOOD<br>LAB</span>
+        Shervin's Food Lab
+      </a>
+      <nav class="nav-links">
+        <a href="#about"><span class="en">About</span><span class="de">Über mich</span></a>
+        <a href="#topics"><span class="en">Topics</span><span class="de">Themen</span></a>
+        <a href="#follow"><span class="en">Follow</span><span class="de">Folgen</span></a>
+        <button class="lang-btn" id="lang-btn" aria-label="Switch language">DE</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <div class="wrap hero">
+      <div class="eyebrow">Berlin · EN / DE</div>
+      <h1>
+        <span class="en">Marketing tips for cafés &amp; restaurants</span>
+        <span class="de">Marketing-Tipps für Cafés &amp; Restaurants</span>
+      </h1>
+      <p>
+        <span class="en">From food science to digital marketing. I share practical ideas that help food businesses get seen online and bring more guests through the door.</span>
+        <span class="de">Von den Lebensmittelwissenschaften ins digitale Marketing. Ich teile praktische Ideen, mit denen Food- und Gastro-Betriebe online sichtbar werden und mehr Gäste gewinnen.</span>
+      </p>
+      <div class="btns">
+        <a class="btn btn-primary" href="https://www.instagram.com/shervins.foodlab/" target="_blank" rel="noopener"
+           data-track="social_click" data-platform="instagram" data-location="hero">
+          <span class="en">Follow on Instagram</span><span class="de">Auf Instagram folgen</span>
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/shervin-khamseh-3ab2a341b/" target="_blank" rel="noopener"
+           data-track="social_click" data-platform="linkedin" data-location="hero">
+          <span class="en">Connect on LinkedIn</span><span class="de">Auf LinkedIn vernetzen</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about">
+      <div class="wrap about">
+        <div class="facts">
+          <div><strong><span class="en">Studying</span><span class="de">Studium</span></strong>
+            <span class="en">B.A. Business Administration, Digital Marketing – BSBI Berlin</span>
+            <span class="de">B.A. Business Administration, Digital Marketing – BSBI Berlin</span></div>
+          <div><strong><span class="en">Background</span><span class="de">Hintergrund</span></strong>
+            <span class="en">Degree in Food Science</span><span class="de">Abschluss in Lebensmittelwissenschaften</span></div>
+          <div><strong><span class="en">Experience</span><span class="de">Erfahrung</span></strong>
+            <span class="en">3 years of social media content for a food company</span>
+            <span class="de">3 Jahre Social-Media-Content für ein Lebensmittelunternehmen</span></div>
+          <div><strong><span class="en">Languages</span><span class="de">Sprachen</span></strong>
+            <span class="en">English, German, Persian</span><span class="de">Englisch, Deutsch, Persisch</span></div>
+        </div>
+        <div>
+          <h2><span class="en">Hi, I'm Shervin</span><span class="de">Hallo, ich bin Shervin</span></h2>
+          <p class="en">I studied food science, worked in hospitality, and spent three years creating Instagram and Facebook content for my family's food production company. Now I'm studying digital marketing in Berlin.</p>
+          <p class="de">Ich habe Lebensmittelwissenschaften studiert, in der Gastronomie gearbeitet und drei Jahre lang Instagram- und Facebook-Content für das Lebensmittelunternehmen meiner Familie erstellt. Heute studiere ich Digital Marketing in Berlin.</p>
+          <p class="en">Food Lab is where those two worlds meet: I know how food is made and how kitchens work, and I'm learning how to market it. Here I share what I learn, test ideas, and document the results.</p>
+          <p class="de">Im Food Lab treffen diese beiden Welten aufeinander: Ich weiß, wie Lebensmittel entstehen und wie Küchen funktionieren, und ich lerne, wie man sie vermarktet. Hier teile ich, was ich lerne, teste Ideen und dokumentiere die Ergebnisse.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TOPICS ================= -->
+    <section id="topics">
+      <div class="wrap">
+        <h2><span class="en">What I share</span><span class="de">Was ich teile</span></h2>
+        <div class="cards">
+          <div class="card">
+            <div class="icon">📱</div>
+            <h3><span class="en">Social media for gastro</span><span class="de">Social Media für Gastro</span></h3>
+            <p><span class="en">Post ideas, content calendars and simple Reels formats for cafés and restaurants.</span>
+               <span class="de">Post-Ideen, Content-Kalender und einfache Reels-Formate für Cafés und Restaurants.</span></p>
+          </div>
+          <div class="card">
+            <div class="icon">🍽️</div>
+            <h3><span class="en">Food content that sells</span><span class="de">Food-Content, der verkauft</span></h3>
+            <p><span class="en">How to photograph and describe dishes so people want to come and try them.</span>
+               <span class="de">Wie man Gerichte fotografiert und beschreibt, damit Gäste sie probieren wollen.</span></p>
+          </div>
+          <div class="card">
+            <div class="icon">📍</div>
+            <h3><span class="en">Local visibility</span><span class="de">Lokale Sichtbarkeit</span></h3>
+            <p><span class="en">Google Business Profile, reviews and local SEO basics for food businesses.</span>
+               <span class="de">Google-Unternehmensprofil, Bewertungen und Local-SEO-Grundlagen für Gastro-Betriebe.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOLLOW ================= -->
+    <section id="follow">
+      <div class="wrap">
+        <h2><span class="en">Follow the Food Lab</span><span class="de">Folge dem Food Lab</span></h2>
+        <div class="socials">
+          <a class="social" href="https://www.instagram.com/shervins.foodlab/" target="_blank" rel="noopener"
+             data-track="social_click" data-platform="instagram" data-location="follow">
+            <div class="name">Instagram</div>
+            <div class="handle">@shervins.foodlab</div>
+          </a>
+          <a class="social" href="https://www.facebook.com/profile.php?id=61594915000238" target="_blank" rel="noopener"
+             data-track="social_click" data-platform="facebook" data-location="follow">
+            <div class="name">Facebook</div>
+            <div class="handle">Shervin's Food Lab</div>
+          </a>
+          <a class="social" href="https://www.linkedin.com/in/shervin-khamseh-3ab2a341b/" target="_blank" rel="noopener"
+             data-track="social_click" data-platform="linkedin" data-location="follow">
+            <div class="name">LinkedIn</div>
+            <div class="handle">Shervin Khamseh</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="wrap">
+      <div class="row">
+        <span>© 2026 Shervin's Food Lab</span>
+        <span>
+          <a href="impressum.html">Impressum</a> ·
+          <a href="#legal">Datenschutz</a> ·
+          <button id="cookie-settings"><span class="en">Cookie settings</span><span class="de">Cookie-Einstellungen</span></button>
+        </span>
+      </div>
+
+      <!-- TODO: Replace with the Datenschutzerklärung from e-recht24.de -->
+      <div class="legal" id="legal">
+        <h3>Datenschutz</h3>
+        <p>[Privacy notice – must mention Google Analytics 4 and that it only runs after consent.]</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= COOKIE BANNER ================= -->
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <p>
+      <span class="en">I use Google Analytics to see how visitors find this site. It only runs if you agree. <a href="#legal">Privacy</a></span>
+      <span class="de">Ich nutze Google Analytics, um zu sehen, wie Besucher diese Seite finden. Es läuft nur mit deiner Zustimmung. <a href="#legal">Datenschutz</a></span>
+    </p>
+    <div class="row">
+      <button id="accept"><span class="en">Accept</span><span class="de">Akzeptieren</span></button>
+      <button id="decline"><span class="en">Decline</span><span class="de">Ablehnen</span></button>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       CONSENT + GA4
+       1. Visitor sees the banner.
+       2. Accept  → GA4 is loaded and starts tracking.
+          Decline → GA4 is never loaded. No data is sent.
+       3. The choice is remembered in the browser.
+       ========================================================= */
+    const GA_ID = 'G-HVPWKVLDRX';
+    const CONSENT_KEY = 'foodlab_consent';
+    let gaLoaded = false;
+
+    function getConsent() {
+      try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+    }
+    function setConsent(value) {
+      try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
+    }
+
+    function loadGA() {
+      if (gaLoaded) return;
+      gaLoaded = true;
+
+      // Same code as the standard Google tag, just added with JavaScript
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', GA_ID);  // sends page_view (UTM parameters in the URL are picked up automatically)
+    }
+
+    const banner = document.getElementById('cookie-banner');
+    const consent = getConsent();
+    if (consent === 'granted') loadGA();
+    else if (consent !== 'denied') banner.style.display = 'block';
+
+    document.getElementById('accept').onclick = () => {
+      setConsent('granted'); banner.style.display = 'none'; loadGA();
+    };
+    document.getElementById('decline').onclick = () => {
+      setConsent('denied'); banner.style.display = 'none';
+    };
+    document.getElementById('cookie-settings').onclick = () => {
+      banner.style.display = 'block';
+    };
+
+    /* =========================================================
+       CUSTOM EVENTS
+       Any link with data-track="event_name" sends an event.
+       Example: social_click with platform = instagram, location = hero
+       → In GA4 you can see which platform and which button gets more clicks.
+       ========================================================= */
+    document.querySelectorAll('[data-track]').forEach(el => {
+      el.addEventListener('click', () => {
+        if (!gaLoaded) return;  // no consent → nothing is sent
+        gtag('event', el.dataset.track, {
+          platform: el.dataset.platform,
+          button_location: el.dataset.location
+        });
+      });
+    });
+
+    /* =========================================================
+       LANGUAGE TOGGLE (EN / DE)
+       ========================================================= */
+    const langBtn = document.getElementById('lang-btn');
+    function setLang(lang) {
+      document.body.classList.toggle('de', lang === 'de');
+      document.documentElement.lang = lang;
+      langBtn.textContent = lang === 'de' ? 'EN' : 'DE';
+      try { localStorage.setItem('foodlab_lang', lang); } catch (e) {}
+    }
+    let startLang = 'en';
+    try { startLang = localStorage.getItem('foodlab_lang') || (navigator.language.startsWith('de') ? 'de' : 'en'); } catch (e) {}
+    setLang(startLang);
+
+    langBtn.onclick = () => {
+      const next = document.body.classList.contains('de') ? 'en' : 'de';
+      setLang(next);
+      if (gaLoaded) gtag('event', 'language_switch', { language: next });
+    };
+  </script>
+
+</body>
+</html>
